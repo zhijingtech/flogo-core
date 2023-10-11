@@ -156,6 +156,9 @@ func newZapRootLogger(name string, format Format, level Level) Logger {
 
 func newZapLogger(logFormat Format, level Level) (*zap.Logger, *zap.AtomicLevel, error) {
 	cfg := zap.NewProductionConfig()
+	// 设置日志输出路径
+	cfg.OutputPaths = []string{"/data/logs/sdk_log/flow.log"}
+	cfg.ErrorOutputPaths = []string{"/data/logs/sdk_log/flow_error.log"}
 	cfg.DisableCaller = true
 
 	eCfg := cfg.EncoderConfig
